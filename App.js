@@ -6,9 +6,9 @@ export default function App() {
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput placeholder="Insert your goal" style={styles.textInput} />
-        <Button title="Add" />
+        <Button title="Add Goal" />
       </View>
-      <View>
+      <View style={styles.goalsContainer}>
         <Text>List of goals here!</Text>
       </View>
     </View>
@@ -17,14 +17,16 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16
   },
   inputContainer: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingBottom: 24,
+    marginBottom: 24,
     borderBottomWidth: 1,
     borderBottomColor: '#cccccc'
   },
@@ -35,5 +37,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
     padding: 8
   },
-  goalsContainer: {}
+  goalsContainer: {
+    flex: 5
+  }
 })
