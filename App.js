@@ -13,8 +13,8 @@ export default function App() {
       ...currentGoals,
       { text: enteredGoalText, id: Math.random().toString() }
     ])
+    endAddGoalHandler()
   }
-
   function deleteGoalHandler(id) {
     setGoals(currentGoals => {
       return currentGoals.filter(goal => goal.id !== id)
@@ -23,6 +23,9 @@ export default function App() {
 
   function startAddGoalHandler() {
     setModalVisibility(true)
+  }
+  function endAddGoalHandler() {
+    setModalVisibility(false)
   }
 
   return (
@@ -33,7 +36,11 @@ export default function App() {
         color="#5e0acc"
       />
 
-      <GoalInput onAddGoal={addGoalHandler} showModal={modalVisibility} />
+      <GoalInput
+        onAddGoal={addGoalHandler}
+        onCancel={endAddGoalHandler}
+        showModal={modalVisibility}
+      />
       <View style={styles.goalsContainer}>
         <FlatList
           data={goals}
