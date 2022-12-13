@@ -1,15 +1,36 @@
-import { StatusBar } from 'expo-status-bar'
+import { useState } from 'react'
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
 
 export default function App() {
+  const [enteredGoalText, setEnteredGoalText] = useState('')
+  const [goals, setGoals] = useState([])
+
+  function goalInputHandler(enteredText) {
+    //console.log(enteredText)
+    setEnteredGoalText(enteredText)
+  }
+
+  function addGoalHandler() {
+    //console.log(enteredGoalText)
+    setGoals(currentGoals => [...currentGoals, enteredGoalText])
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
-        <TextInput placeholder="Insert your goal" style={styles.textInput} />
-        <Button title="Add Goal" />
+        <TextInput
+          placeholder="Insert your goal"
+          onChangeText={goalInputHandler}
+          style={styles.textInput}
+        />
+        <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        <Text>List of goals here!</Text>
+        {goals.map(goal => (
+          <View key={goal} style={styles.goalWrapper}>
+            <Text style={{ color: 'white' }}>{goal}</Text>
+          </View>
+        ))}
       </View>
     </View>
   )
@@ -39,5 +60,12 @@ const styles = StyleSheet.create({
   },
   goalsContainer: {
     flex: 5
+  },
+  goalWrapper: {
+    margin: 8,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: '#5e0acc',
+    color: 'white'
   }
 })
