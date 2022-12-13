@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { View, TextInput, Button, Image, StyleSheet, Modal } from 'react-native'
+import { StatusBar } from 'expo-status-bar'
 
 const GoalInput = props => {
   const [enteredGoalText, setEnteredGoalText] = useState('')
@@ -13,28 +14,35 @@ const GoalInput = props => {
   }
 
   return (
-    <Modal visible={props.showModal} animationType="slide">
-      <View style={styles.inputContainer}>
-        <Image
-          source={require('../../../assets/goal.png')}
-          style={styles.image}
-        />
-        <TextInput
-          placeholder="Insert your goal"
-          onChangeText={goalInputHandler}
-          value={enteredGoalText}
-          style={styles.textInput}
-        />
-        <View style={styles.buttonContainer}>
-          <View style={styles.button}>
-            <Button title="Add Goal" onPress={addGoalHandler} color="#5e0acc" />
-          </View>
-          <View style={styles.button}>
-            <Button title="Cancel" onPress={props.onCancel} color="#f31282" />
+    <>
+      <StatusBar style="light" />
+      <Modal visible={props.showModal} animationType="slide">
+        <View style={styles.inputContainer}>
+          <Image
+            source={require('../../../assets/goal.png')}
+            style={styles.image}
+          />
+          <TextInput
+            placeholder="Insert your goal"
+            onChangeText={goalInputHandler}
+            value={enteredGoalText}
+            style={styles.textInput}
+          />
+          <View style={styles.buttonContainer}>
+            <View style={styles.button}>
+              <Button
+                title="Add Goal"
+                onPress={addGoalHandler}
+                color="#5e0acc"
+              />
+            </View>
+            <View style={styles.button}>
+              <Button title="Cancel" onPress={props.onCancel} color="#f31282" />
+            </View>
           </View>
         </View>
-      </View>
-    </Modal>
+      </Modal>
+    </>
   )
 }
 
